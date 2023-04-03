@@ -1,0 +1,129 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+
+
+<div style="padding-top:6rem;">
+    <section>
+  <div class="  h-100" >
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="~/img/helico-logo.png"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7  align-items-center">
+              <div class="card-body p-4  text-black">
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+                 
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">S'enregistrer</h5>
+                  <div id="unvisible">
+                      <div class="form-outline mb-2">
+                        <label class="form-label" asp-for="Input.LastName" >Nom</label>
+                        <input   class="form-control form-control-lg" asp-for="Input.LastName" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-outline mb-2">
+                        <label class="form-label" asp-for="Input.Name" >Prénom</label>
+                        <input   class="form-control form-control-lg" asp-for="Input.Name" />
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                      </div>
+
+                      <div class="form-outline mb-2">
+                        <label class="form-label" asp-for="Input.Email" >Adresse Email</label>
+                        <input   class="form-control form-control-lg" asp-for="Input.Email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                      </div>
+
+                     
+                      
+                  <div class="pt-1 mb-4">
+                    <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" type="button" id="next">Suivant</button>
+                  </div>
+
+                  </div>
+                 
+
+
+
+                  <div id="invible" >
+
+                      
+                      
+                       <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="Input.Password" >Mot de passe</label>
+                        <input   class="form-control form-control-lg" asp-for="Input.Password" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                      </div>
+
+                       <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="Input.ConfirmPassword" >Confirmation mot de passe</label>
+                        <input   class="form-control form-control-lg" asp-for="Input.ConfirmPassword" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                      </div>
+
+                        
+                          <div class="pt-1 mb-4">
+                            <a id="goBack">Retour</a>
+                              <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" id="submit" type="submit">S'inscrire</button>
+                          </div>
+
+                  </div>
+    
+
+
+
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Déjà un compte? <a asp-area="Identity" asp-page="/Account/Login"
+                      style="color: #393f81;">Connecte toi</a></p>
+                 
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+
+<script>
+    document.getElementById("unvisible").classList.remove("hidden")
+    document.getElementById("invible").classList.add("hidden")
+
+
+    document.getElementById('next').addEventListener("click", () =>{
+        document.getElementById("unvisible").classList.add("hidden")
+        document.getElementById("invible").classList.remove("hidden")
+
+})
+
+document.getElementById("goBack").addEventListener("click", () => {
+    document.getElementById("invible").classList.add("hidden")
+    document.getElementById("unvisible").classList.remove("hidden")
+})
+
+document.getElementById("submit").addEventListener("click", () => {
+    document.getElementById("invible").classList.add("hidden")
+    document.getElementById("unvisible").classList.remove("hidden")
+})
+
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

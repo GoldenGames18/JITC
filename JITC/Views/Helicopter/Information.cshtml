@@ -1,0 +1,54 @@
+﻿
+@model JITC.Models.Helicopter
+
+@{
+    ViewData["Title"] = "Information Hélicoptère";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Information </strong> d'un Hélicoptère </h1>
+            </div>
+        </div>
+    </div>
+         <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Helicopter" asp-action="ListOfHelicopter">Liste des Hélicoptères</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Information d'un Hélicoptère</li>
+      </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                      
+                             
+                             <p class="lead">
+                               <h5>Nom de l'hélicoptère :  @Model.HelicopterName </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Taille de la cabine :  @Model.Size </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Vitesse :  @Model.Speed  </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Moteur :  @Model.Engine  </h5>
+                            </p>
+                            
+
+                            
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

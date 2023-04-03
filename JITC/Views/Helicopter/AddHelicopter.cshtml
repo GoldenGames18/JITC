@@ -1,0 +1,61 @@
+﻿@model JITC.Models.Helicopter;
+@{
+    ViewData["Title"] = "Ajout d'Hélicoptère";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Ajout </strong> d'un Hélicoptère </h1>
+            </div>
+        </div>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Helicopter" asp-action="ListOfHelicopter">Liste des Hélicoptères</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ajout d'un Hélicoptère</li>
+      </ol>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <form asp-action="AddHelicopter">
+                          
+                          <div class="mb-3">
+                            <label  class="form-label">Nom de l'hélicoptère : </label>
+                            <input asp-for="HelicopterName" type="text" class="form-control" id="name" value="@Model.HelicopterName"  >
+                            <div id="emailHelp" class="form-text"></div>
+                            <h6>@Html.ValidationMessageFor(m => m.HelicopterName, "", new { @class = "text-danger" })</h6>
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">Capacité de la cabine : </label>
+                            <input asp-for="Size" type="number" class="form-control" id="name" value="@Model.Size"  >
+                            <div id="emailHelp" class="form-text"></div>
+                            <h6>@Html.ValidationMessageFor(m => m.Size, "", new { @class = "text-danger" })</h6>
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">Vitesse de l'hélicoptère  : </label>
+                            <input asp-for="Speed" type="number" class="form-control" id="name" value="@Model.Speed"  >
+                            <div id="emailHelp" class="form-text"></div>
+                            <h6>@Html.ValidationMessageFor(m => m.Speed, "", new { @class = "text-danger" })</h6>
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">Moteur de l'hélicoptère : </label>
+                            <input asp-for="Engine" type="text" class="form-control" id="name" value="@Model.Engine"  >
+                            <div id="emailHelp" class="form-text"></div>
+                            <h6>@Html.ValidationMessageFor(m => m.Engine, "", new { @class = "text-danger" })</h6>
+                          </div>
+                          <button type="submit" style="border:none;" class=" btn btn-primary bg-c-lite-green">Enregistrer</button>
+                        </form> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

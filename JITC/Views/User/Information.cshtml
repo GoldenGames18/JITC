@@ -1,0 +1,45 @@
+﻿@model JITC.Models.User
+@{
+    ViewData["Title"] = "Infos Utilisateurs";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Informations </strong> Utilisateur </h1>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="User" asp-action="ListOfUser">Liste des Utilisateurs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Informations de l'Utilisateur</li>
+      </ol>
+    </nav>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                      
+                             <img src= "@Url.Content(@Model.Path)" alt="image user" class="img-radius-medium" />
+                             <p class="lead">
+                               <h5>Nom :  @Model.Name </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Prénom :  @Model.LastName </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Email :  @Model.Email </h5>
+                            </p>
+                            
+
+                            
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

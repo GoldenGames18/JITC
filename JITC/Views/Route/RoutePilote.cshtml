@@ -1,0 +1,73 @@
+﻿@model JITC.ViewModels.ListOfCurrentRoute
+@{
+    ViewData["Title"] = "Mes Vols";
+}
+
+
+<section style="padding-top:1.2rem;" >
+  <div class="container py-5">
+    <div class="row justify-content-center mb-4">
+                           
+      <div class="col-md-12 col-xl-10 table-wrapper-scroll-y my-custom-scrollbar ">
+
+
+      
+         
+
+  @foreach(var item in @Model.CurrentRoute)
+          {
+                    <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h4><i class="fa-solid fa-helicopter"></i> Vols du @item.Start.ToString("dd-MM-yyyy") de @item.PanifiedStart.ToString("HH:mm") à @item.PanifiedEnd.ToString("HH:mm") </h4>
+                <h5><strong>De @item.StartAirport.Name à @item.EndAirport.Name  </strong> </h5>
+                <h5>Distance @item.Kilometre km  </h5>
+           
+                
+                      <h6 >  Places restantes @item.PlaceRemaining  sur @item.Place </h6>                                       
+               
+                
+        
+          
+
+               
+              </div>
+
+                 @if (item.Finish == false)
+                 {
+                             <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-column mt-5">
+                  <a asp-action="CreateRaport" asp-controller="Report" asp-route-id="@item.RouteId"><button class="btn btn-primary btn-sm bg-c-lite-green" type="button">Crée un rapport</button></a>
+                </div>
+              </div>             
+
+                 }
+
+        
+            </div>
+          </div>
+        </div>         
+                
+          }
+
+      </div>
+    </div>
+    </div>
+</section>
+
+<div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>

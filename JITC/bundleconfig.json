@@ -1,0 +1,42 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [ "wwwroot/css/site.css" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/addMap.min.js",
+    "inputFiles": [ "wwwroot/js/addMap.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/dashboard.min.js",
+    "inputFiles": [ "wwwroot/js/dashboard.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/editMap.min.js",
+    "inputFiles": [ "wwwroot/js/editMap.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/hiddenOption.min.js",
+    "inputFiles": [ "wwwroot/js/hiddenOption.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/infomation.min.js",
+    "inputFiles": [ "wwwroot/js/infomation.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/informationMap.min.js",
+    "inputFiles": [ "wwwroot/js/informationMap.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/stat.min.js",
+    "inputFiles": [ "wwwroot/js/stat.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/ajax.min.js",
+    "inputFiles": [ "wwwroot/js/ajax.js" ]
+  }
+
+
+
+
+]

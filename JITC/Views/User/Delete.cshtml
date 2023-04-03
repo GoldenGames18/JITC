@@ -1,0 +1,53 @@
+﻿@model JITC.Models.User
+@{
+    ViewData["Title"] = "Suppresion Utilisateurs";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Suppression </strong> d'un Utilisateur</h1>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="User" asp-action="ListOfUser">Liste des Utilisateurs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Suppression d'un utilisateur</li>
+      </ol>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                      
+                             <img src= "@Url.Content(@Model.Path)" alt="image user" class="img-radius-medium" />
+                             <p class="lead">
+                               <h5>Nom :  @Model.Name </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Prénom :  @Model.LastName </h5>
+                            </p>
+                            <p class="lead">
+                               <h5>Email :  @Model.Email </h5>
+                            </p>
+                             <p class="lead">
+                               <form asp-action="Delete">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="submit" value="Supprimer" class="btn btn-danger" /> 
+                                    <a asp-action="ListOfUser"  style="text-decoration:none; color:black;">Retour</a>
+                               </form>
+                            </p>
+
+                            
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

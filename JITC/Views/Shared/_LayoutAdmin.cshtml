@@ -1,0 +1,121 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using JITC.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JITC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <environment include="Development" > 
+           <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+           <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+ 
+    <link rel="stylesheet" href="~/JITC.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"/>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    
+
+
+
+</head>
+<body>
+    <header>
+
+  <nav  id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+       <a asp-controller="Home" asp-action="Index" > <img src="~/img/logo-no-title.png" style="width:5rem;" class="rounded mx-auto d-block" /></a>
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        
+   
+        <a asp-controller="Dashboard" asp-action="Index" id="dashboard" class="list-group-item list-group-item-action py-2 ripple active" b-7wmaf0sdik="" >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <a asp-controller="User" asp-action="ListOfUser" id="user" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent" b-7wmaf0sdik="">
+            <i class="fas fa-users fa-fw me-3"></i>
+            <span>Utilisateurs</span>
+       </a>
+
+       <a asp-controller="Airport" asp-action="ListOfAirport" id="airport" class="list-group-item list-group-item-action py-2 ripple " style="background-color:transparent;" b-7wmaf0sdik="">
+    
+          <i class="fa-solid fa-plane-departure fa-fw me-3"></i
+          ><span>Aéroports</span>
+        </a>
+
+        <a asp-controller="Route" asp-action="ListOfRoute" id="route" class="list-group-item list-group-item-action py-2 ripple " style="background-color:transparent;" b-7wmaf0sdik="">
+    
+          <i class="fa-solid fa-route fa-fw me-3"></i
+            ><span>Trajets</span>
+        </a>
+        <a asp-controller="Helicopter" asp-action="ListOfHelicopter" id="helicoptere" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent;" b-7wmaf0sdik="">
+            <i class="fa-solid fa-helicopter fa-fw me-3"></i>
+            <span>Hélicoptères</span>
+        </a>
+        <a asp-controller="Helicopter" asp-action="Garage" id="garage" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent;" b-7wmaf0sdik="">
+            <i class="fa-solid fa-garage fa-fw me-3"></i>
+            <span>Garage</span>
+        </a>
+        
+        <a asp-controller="Statistique" asp-action="Index"  id="statistique" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent; " b-7wmaf0sdik="">
+            <i class="fas fa-chart-bar fa-fw me-3"></i>
+            <span>
+                Statistiques
+            </span>
+        </a>
+
+        <a asp-controller="Report" asp-action="ListOfReport"  id="report" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent; " b-7wmaf0sdik="">
+           <i class="fa-solid fa-notes"></i>
+            <span>
+                Rapports
+            </span>
+        </a>
+
+
+        <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple" style="background-color:transparent;" b-7wmaf0sdik="">
+
+            <i class="fa-solid fa-arrow-right-from-bracket fa-fw me-3"></i>
+           
+            <span>
+                Acceuil
+            </span>
+        </a>
+        
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<main>
+  <div class="container pt-5">
+    @RenderBody()
+  </div>
+</main>
+
+    
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <environment include="Development" > 
+        <script src="~/js/dashboard.js asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/dashboard.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+         
+     @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

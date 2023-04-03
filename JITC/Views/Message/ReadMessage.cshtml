@@ -1,0 +1,56 @@
+﻿@model JITC.Models.Message
+
+@{
+    ViewData["Title"] = "Message";
+
+}
+
+<div class="container" style="margin-top:5rem;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+               
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                        <div>
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6">
+                                  <a asp-controller="Message" asp-action="Index">
+                                       <button type="button" class="btn btn-primary bg-c-lite-green"><i class="fa-solid fa-arrow-left"></i> Retour</button> 
+                                  </a> 
+                                </div>
+                           
+                            </div>
+                              
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6">
+                                    <h4 class="font-light mb-0">Poster le : @Model.Date.ToString("dd-MM-yyyy")</h4>
+                                </div>
+                           
+                            </div>
+                           
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-9">
+                                    <p class="h5">
+                                        <strong>@Model.Title</strong>
+                                        <br />
+                                        <br />
+
+                                        @Model.Text 
+                                    </p>
+                                   
+                                </div>
+                           
+                            </div>
+                   
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+

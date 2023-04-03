@@ -1,0 +1,90 @@
+﻿@model IEnumerable<JITC.Models.Report>
+
+@{
+    ViewData["Title"] = "Rapport";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var count = 0;
+    @foreach (var report in Model)
+    {
+        
+         @if (report.End.TimeOfDay >= report.Route.PanifiedEnd.TimeOfDay && report.End.TimeOfDay <= report.Route.PanifiedEnd.AddMinutes(5).TimeOfDay && report.Start.TimeOfDay >= report.Route.PanifiedStart.TimeOfDay && report.Start.TimeOfDay <= report.Route.PanifiedStart.AddMinutes(5).TimeOfDay)
+                                  {
+                                    
+
+                                  }
+                                  else
+                                  {
+            count++;
+        }
+    }
+
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+             
+            <div class="page-title-box" style="display:flex;">
+                
+                <h1 class="page-title h3 mb-3"><strong>Rapport</strong></h1> <br />
+               
+            </div>
+             <h2 class="page-title h3 mb-3"><strong>Retard : </strong>@count </h2> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table">
+                      <thead style="position: sticky;top: 0; background:#262626; color:white;">
+                        <tr>
+                        
+                          <th>Trajet</th>
+                          <th>Retard</th>
+                          <th>Date</th>
+                          <th>Capacité maximale</th>
+                          <th>Places disponible</th>
+                          <th>Message</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+
+
+                        @foreach(var report in Model)
+                        {
+                            <tr>
+                                <td>@report.Route.StartAirport.Name à  @report.Route.EndAirport.Name</td>
+                                
+                                  @if (report.End.TimeOfDay >= report.Route.PanifiedEnd.TimeOfDay && report.End.TimeOfDay <= report.Route.PanifiedEnd.AddMinutes(5).TimeOfDay && report.Start.TimeOfDay >= report.Route.PanifiedStart.TimeOfDay && report.Start.TimeOfDay <= report.Route.PanifiedStart.AddMinutes(5).TimeOfDay)
+                                  {
+                                    <td>Non</td>
+
+                                  }
+                                  else
+                                  {
+                                    <td>Oui</td>
+                                  }
+
+                                <td>@report.Route.Start.ToString("dd/MM/yyyy")</td>
+                                <td>@report.Route.Place </td>
+                                <td>@report.Route.PlaceRemaining</td>
+                                <td>@report.Message</td>
+                           
+                                <td>
+                                    <a asp-action="Information" asp-route-id="@report.IdRaport"><span class="badge bg-info "><i class="fa-solid fa-eye"></i> Détails</span> </a>
+                                </td>
+                            </tr>         
+                        }
+                        </tbody>
+                        </table>
+                </div> 
+            </div>
+        </div>
+    </div>
+ </div>
+ </div>

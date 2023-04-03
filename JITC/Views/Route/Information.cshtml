@@ -1,0 +1,47 @@
+﻿@model JITC.Models.Route;
+@{
+    ViewData["Title"] = "Information Trajet";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Informations </strong> d'un Trajet </h1>
+            </div>
+        </div>
+    </div>
+
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="ListOfRoute">Liste des trajets</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Informations d'un Trajet</li>
+      </ol>
+    </nav>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <p class="lead">
+                               <h5>Date du vol : @Model.Start.ToString("dd/MM/yyyy")   </h5>
+                               <h5>Heure du vol : @Model.PanifiedStart.ToString("HH:mm") à @Model.PanifiedEnd.ToString("HH:mm") </h5>
+                             
+                               <h5>Nom de l'Aéroport de départ : @Model.StartAirport.Name   </h5>
+                               <h5>Nom de l'Aéroport d'arrivée : @Model.EndAirport.Name   </h5>
+                               <h5>Nombre de kilomètres : @Model.Kilometre  </h5>
+                               <h5>Nom du pilote : @Model.Pilote.Name </h5>
+                               <h5>Nom de l'hélicoptère : @Model.Helicopter.HelicopterName </h5>
+                               
+                            </p>
+
+
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

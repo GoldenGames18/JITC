@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using JITC.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JITC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/jqueryui/themes/base/jquery-ui.min.css" />
+    <environment include="Development" > 
+           <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+           <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" href="~/JITC.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"/>
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+</head>
+<body class="background">
+    <header>
+       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
+            <div class="container-fluid">
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between positionnement">
+                    <div class=" text-light">
+                         <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                
+                               <a  class="nav-link text-light"  asp-controller="Home" asp-action="Index"> <i class="fa-solid fa-house i"></i><span>Accueil</span> </a>
+                            </li>
+                            @if(!SignInManager.IsSignedIn(User)){
+                               
+                            <li>
+                                <a class="nav-link text-light" id="login"  asp-area="Identity" asp-page="/Account/Register"><i class="fa-solid fa-circle-plus i"></i> <span>S'enregistrer</span> </a>
+                           </li>
+                           <li>
+                               <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login"><i class="fa-solid fa-door-open i"></i> <span>Connexion</span></a>
+                           </li>
+
+
+                            }
+                        
+   
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                            
+
+                                <li>
+                                     <a class="nav-link text-light"   asp-controller="User" asp-action="Index"  ><i class="fa-solid fa-user i"></i> <span>Profil</span></a>
+                                </li>
+
+                                @if (User.IsInRole("Client"))
+                                {
+                                <li>
+                                    <a class="nav-link text-light"  asp-controller="Route" asp-action="Index"><i class="fa-solid fa-backpack i"></i> <span>Voyages</span> </a>
+                                </li>
+
+                                <li>
+                                    <a class="nav-link text-light"  asp-controller="Ticket" asp-action="ListOfMyTicket"><i class="fa-solid fa-ticket-airline i"></i> <span>Mes Tickets</span> </a>
+                                </li>
+                                }
+
+                                
+
+                                @if (User.IsInRole("Pilote"))
+                                {
+                                    
+                                <li>
+                                    <a class="nav-link text-light"   asp-controller="Route" asp-action="RoutePilote" ><i class="fa-solid fa-helicopter i"></i> <span>Mes Vols</span> </a>
+                                </li>
+
+                                }
+
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    
+                                <li>
+                                    <a class="nav-link text-light"   asp-controller="Dashboard" asp-action="Index" ><i class="fa-solid fa-gauge-low i"></i> <span>Dashboard</span> </a>
+                                </li>
+
+                                }
+                               
+
+                                <li>
+                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                        <button type="submit" class="nav-link btn btn-link text-light"><i class="fa-solid fa-arrow-right-from-bracket"></i> Deconnexion</button>
+                                    </form>
+
+                                
+                                </li> 
+                 
+                            }
+
+
+
+                    </ul>
+                    </div>
+                   
+                </div>
+            </div>
+        </nav>
+
+        
+
+    </header>
+    <div class=" container ">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+             
+
+
+   
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

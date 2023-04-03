@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Ajout d'un Trajet";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Ajout </strong> d'un Trajet </h1>
+            </div>
+        </div>
+    </div>
+
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="ListOfRoute">Liste des Trajets</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ajout d'un Trajet</li>
+      </ol>
+    </nav>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                    
+                            <div class="mb-3">
+                                <p class="h4">Création d'un trajet unique : </p>
+                                 <a asp-controller="Route" asp-action="UniqueTicket">
+                                    <button class="btn btn-primary bg-c-lite-green" type="button"><i class="fa-solid fa-plus"></i> Ajouter</button>
+                                 </a> 
+                            
+                            </div>
+                            <div class="mb-3">
+                                <p class="h4">Création d'un trajet hebdomadaire : </p>   
+                                <a asp-controller="Route" asp-action="HebdoTicket">
+                                    <button class="btn btn-primary bg-c-lite-green" type="button"><i class="fa-solid fa-plus"></i> Ajouter</button>
+                                </a>
+
+                           
+                            </div>
+                            <div class="mb-3">
+                                <p class="h4">Création d'un trajet quotidien :</p>   
+
+                                <a asp-controller="Route" asp-action="DayTicket">
+                                    <button class="btn btn-primary bg-c-lite-green" type="button"><i class="fa-solid fa-plus"></i> Ajouter</button>
+                                </a>
+                                
+                            </div>
+
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

@@ -1,0 +1,91 @@
+﻿@model JITC.ViewModels.CreateUniqueRouteViewModel
+
+@{
+    ViewData["Title"] = "Ajout Trajet Unique";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Ajout </strong> d'un Trajet Unique </h1>
+            </div>
+        </div>
+    </div>
+
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="ListOfRoute">Liste des Trajets</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="AddRoute">Ajout d'un Trajet</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ajout d'un Trajet unique</li>
+      </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <form asp-action="CreateTicketUnique">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <input asp-for="DateFly" value="@Model.DateFly" type="hidden"/>
+                            <input asp-for="EndAireport" value="@Model.EndAireport" type="hidden"/>
+                            <input asp-for="EndFly" value="@Model.EndFly" type="hidden"/>
+                            <input asp-for="StartAirport" value="@Model.StartAirport" type="hidden"/>
+                            <input asp-for="StartFly" value="@Model.StartFly" type="hidden"/>
+                            <input asp-for="Type" value="@Model.Type" type="hidden"/>
+                  
+                               <div class="mb-3">
+                                <label  class="form-label">Hélicoptères :</label>   
+                                <select asp-for="IdHelicopter" id="helicop" class="form-select" aria-label="Default select example" onchange="helicopSize(this)">
+                                  <option value="0" selected>----------------</option>
+
+                                    @foreach(var helicopter in Model.Helicopters)
+                                    {
+                                        <option  value="@helicopter.HelicopterId" id="heli" data="@helicopter.Size">@helicopter.HelicopterName</option>
+
+                                    }
+                                </select>
+
+                                 <h6>@Html.ValidationMessageFor(m => m.IdHelicopter, "", new { @class = "text-danger" })</h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <label  class="form-label">Capacité de la cabine : </label>
+                                <input  asp-for="Size" type="number" class="form-control" id="size"  min="1" value="@Model.Size"  >
+                                  <h6>@Html.ValidationMessageFor(m => m.Size, "", new { @class = "text-danger" })</h6>
+                            </div>
+            
+                                <div class="mb-3">
+                                    <label  class="form-label">Pilotes disponibles: </label>
+                                    <select  asp-for="IdPilote"  class="form-select" aria-label="Default select example" >
+                                    <option selected value="0">----------------</option>
+
+                                    @foreach(var pilote in Model.Pilote)
+                                    {
+                                        <option  value="@pilote.Id">@pilote.Name @pilote.LastName </option>
+
+                                    }
+                                </select>
+                                 <h6>@Html.ValidationMessageFor(m => m.IdPilote, "", new { @class = "text-danger" })</h6>
+                                </div>
+                                 <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" type="submit" id="next">Enregistrer</button>
+                            </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+     @section Scripts{
+           <environment include="Development" > 
+             <script src="~/js/hiddenOption.js" asp-append-version="true"></script>
+          
+    </environment>
+    <environment exclude="Development">
+            <script src="~/js/hiddenOption.min.js" asp-append-version="true"></script>
+    </environment>
+     }
+

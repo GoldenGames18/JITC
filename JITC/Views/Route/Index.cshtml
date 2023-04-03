@@ -1,0 +1,136 @@
+﻿@model JITC.ViewModels.ListOfCurrentRoute
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery csrf
+@{
+    ViewData["Title"] = "Voyage";
+
+    var time = @ViewData["time"];
+}
+@functions{
+    public string GetAnticsrfTokens() => csrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+
+<input type="hidden" id="RequestCsrfToken" name="RequestCsrfToken" value="@GetAnticsrfTokens()" />
+<section style="padding-top:1.2rem;" >
+  <div class="container py-5">
+    <div class="row justify-content-center mb-4">
+            <form asp-action="Index" method="get">
+            <div class="row " style="padding-bottom:0.5rem;">
+            
+                     <div class="col-sm-3">
+                       <p class="m-b-10 f-w-600" style="color:white;">Départ :</p>
+                                    <input type="text" class="form-control" id="start" aria-describedby="emailHelp"  name="start" value="@ViewData["start"]">    
+                                       
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p class="m-b-10 f-w-600" style="color:white;">Arrivée :</p>
+                                        <input type="text" class="form-control" id="end" aria-describedby="emailHelp"   name="end" value="@ViewData["end"]">
+                      
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <p class="m-b-10 f-w-600" style="color:white;">Date :</p>
+                                        <input type="date" class="form-control"  aria-describedby="emailHelp"   name="time" value="@time">
+                      
+                                    </div>
+                                     <div class="col-sm-2">
+                                         <p class="m-b-10 f-w-600" style="color:none; "> e</p>
+                                        <button type="submit" class="btn btn-primary">Rechercher <i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                     <div class="col-sm-3">
+                                         <p class="m-b-10 f-w-600" style="color:none; "> e</p>
+                                        <a asp-action="Index" asp-controller="Route"><button type="button" class="btn btn-primary">Enlever les filtres</button></a>
+                                    </div>
+
+
+                               
+                                </div>
+                      </form>                
+      <div class="col-md-12 col-xl-10 table-wrapper-scroll-y my-custom-scrollbar ">
+
+
+      
+         
+
+          @foreach(var item in @Model.CurrentRoute)
+          {
+                    <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h4><i class="fa-solid fa-helicopter"></i> Vols du @item.Start.ToString("dd-MM-yyyy") de @item.PanifiedStart.ToString("HH:mm") à @item.PanifiedEnd.ToString("HH:mm") </h4>
+                <h5><strong>De @item.StartAirport.Name à @item.EndAirport.Name  </strong> </h5>
+                <h5>Distance @item.Kilometre km  </h5>
+                @if(@item.Place /2 < @item.PlaceRemaining)
+                {
+                      <h6 >  Places restantes @item.PlaceRemaining  sur @item.Place </h6>                                       
+                }
+                else
+                {
+        
+                    <h6 style="color:red;"> <strong> Places restantes @item.PlaceRemaining  sur @item.Place <i class="fa-solid fa-exclamation"></i></strong> </h6>                     
+
+                }
+
+               
+              </div>
+
+                 @if (item.PlaceRemaining != 0)
+                 {
+                             <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-column mt-5">
+                  <a asp-action="CreateTicket" asp-controller="Ticket" asp-route-id="@item.RouteId"><button class="btn btn-primary btn-sm bg-c-lite-green" type="button">Réserver</button></a>
+                </div>
+              </div>             
+
+                 }
+
+        
+            </div>
+          </div>
+        </div>         
+                
+          }
+
+
+      </div>
+    </div>
+    </div>
+</section>
+
+
+<div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>
+
+        @section Scripts{
+            <environment include="Development">
+                <script src="jqueryui/jquery-ui.js"></script>
+            </environment>
+
+            <environment exclude="Development">
+                  <script src="jqueryui/jquery-ui.min.js"></script>
+            </environment>
+
+            <environment include="Development">
+                       <script src="~/js/ajax.js"></script>
+            </environment>
+
+            <environment exclude="Development">
+                  <script src="~/js/ajax.min.js"></script>
+            </environment>
+
+     
+        }

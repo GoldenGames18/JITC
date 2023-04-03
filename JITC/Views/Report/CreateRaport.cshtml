@@ -1,0 +1,69 @@
+﻿@model JITC.ViewModels.ReportViewModel
+@{
+    ViewData["Title"] = "Rapport";
+    var data = ViewBag.Error;
+}
+
+<div class="row" style="padding-top:5rem;">
+           <nav aria-label="breadcrumb">
+      <ol class="breadcrumb" >
+        <li class="breadcrumb-item" style="color:white;"><a asp-controller="Route" asp-action="RoutePilote" style="color:white;">Mes Vols</a></li>
+        <li class="breadcrumb-item active" aria-current="page" style="color:white;">Créer un rapport</li>
+      </ol>
+    </nav>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <h4><i class="fa-solid fa-helicopter"></i> Vols du @Model.Route.Start.ToString("dd-MM-yyyy") de @Model.Route.PanifiedStart.ToString("HH:mm") à @Model.Route.PanifiedEnd.ToString("HH:mm") </h4>
+                            <h5> 5 minutes de retard autorisées pour le départ et l'arrivée sinon indiquer une justification de retard.</h5>
+                            <form asp-action="CreateRaport">
+                                <input asp-for="IdRoute" type="hidden" value="@Model.IdRoute"/>
+                                <div class="mb-3">
+                                    <div class="cs-form">
+                                      <label  class="form-label">Heure de départ : </label>
+                                      <input asp-for="Start" type="time" class="form-control" value="@Model.Start.ToString("HH:mm")" />
+                                    </div>
+                                       <h6>@Html.ValidationMessageFor(m => m.Start, "", new { @class = "text-danger" })</h6>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="cs-form">
+                                      <label  class="form-label" >Heure d'arrivée : </label>
+                                      <input asp-for="End" type="time" class="form-control"  value="@Model.End.ToString("HH:mm")" />
+                                    </div>
+                                       <h6>@Html.ValidationMessageFor(m => m.End, "", new { @class = "text-danger" })</h6>
+                                </div>
+                                    
+                              <div class="mb-3">
+                                  <label for="exampleFormControlTextarea1" class="form-label">Note ou raison d'un retard</label>
+                                  <textarea style="max-height: 253px; height:253px;" asp-for="Message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                   <h6 style="color:red;">@data</h6>
+                              </div>
+                                  
+
+                                <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" type="submit" id="next">Valider</button>
+                            </form>
+
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>

@@ -1,0 +1,19 @@
+﻿.positionnement {
+    position: absolute;
+    top: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.text-none {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+

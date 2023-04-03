@@ -1,0 +1,86 @@
+﻿@model JITC.ViewModels.UserViewModels;
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container position d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img src= "@Url.Content(@Model.Path)"  class="img-radius" alt="User-Profile-Image">
+                                </div>
+                                    @if(@Model.Role.Equals("Admin"))
+                                    {
+                                        <p>Administrateur</p>
+                                    }
+                                    else if(@Model.Role.Equals("Pilote"))
+                                    {
+                                       <p>Pilot</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Voyageur</p>
+                                    }
+
+                                   
+                                <a asp-controller="User" asp-action="EditUser" style="color:white;"><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" style="font-size:25px;"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Nom :</p>
+                                        <h6 class="text-muted f-w-400">@Model.Name</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Prénom :</p>
+                                        <h6 class="text-muted f-w-400">@Model.LastName</h6>
+                                    </div>
+                                </div>
+                   
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Contact</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        
+                                        <h6 class="text-muted f-w-400">@Model.Email</h6>
+                                    </div>
+                                      <div class="col-sm-6">
+                                      
+
+                                        <a asp-controller="User" asp-action="EditPassWord"  class="text-muted f-w-400"><button type="button" class="bg-c-lite-green btn btn-primary" style="margin-right:0px;">Mot de passe</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>
+    

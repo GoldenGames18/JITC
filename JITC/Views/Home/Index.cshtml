@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model JITC.ViewModels.NotificationViewModel;
+@{
+    ViewData["Title"] = "Accueil";
+}
+
+<div class="position">
+<div class="position-relative overflow-hidden p-2 p-md-4 m-md-2 text-center ">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <img src="~/img/logo-no-title.png" alt="logo JITC" style="    max-height: 40%; max-width: 40%">
+      
+      <p class="lead fw-normal"> <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">JITC</a></p>
+       <p id="info" class="lead fw-normal " style="color:white; background-color:#383e42; height:50%;" hidden> Just-in-time company consiste en une offre de transports de personnes par hélicoptère pour désengorger les routes 
+           <br />      
+           <strong>Que faisons-nous ?</strong> 
+<br />
+<br />
+JITC est une entreprise familiale depuis plus de 3 générations, qui a pour but de transporter des personnes ou groupes de personnes via divers moyens de transport. Ici nous nous sommes spécialisé dans le transport aérien via hélicoptères.
+<br />
+<br />
+Notre principale zone d'action est la belgique avec les plus grands aéroports :
+<br />
+-Liège<br />
+
+-Charleroi
+<br />
+-Bruxelles
+<br />
+-Ostende
+<br />
+<br />
+Nous offrons différents types de trajets. Celui-ci, pourra par exemple être unique, tandis que d'autres seront étalés quotidiennement ou seront de type hebdomadaire.
+<br />
+<br />
+Pour voir nos tarifs Connectez-vous.
+
+       </p>
+      <a id="decouvrir" class="highlight-button btn btn-large button xs-margin-bottom-five" data-abc="true">Nous découvrir</a> 
+    
+    </div>
+  </div>
+
+</div>
+
+
+
+
+     @if (SignInManager.IsSignedIn(User))
+    {
+    <div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>
+
+    }
+
+
+      @section Scripts{
+          <environment include="Development" > 
+          <script src="~/js/infomation.js" asp-append-version="true"></script>
+           
+    </environment>
+    <environment exclude="Development">
+           <script src="~/js/infomation.min.js" asp-append-version="true"></script>
+    </environment>
+      }
+    

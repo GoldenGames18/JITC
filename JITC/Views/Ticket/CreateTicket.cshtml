@@ -1,0 +1,71 @@
+﻿@model JITC.ViewModels.InformationTicketViewModel
+@{
+    ViewData["Title"] = "Réservation";
+    
+}
+
+
+
+
+    <div class="row" style="padding-top:5rem;">
+           <nav aria-label="breadcrumb">
+      <ol class="breadcrumb" >
+        <li class="breadcrumb-item" style="color:white;"><a asp-controller="Route" asp-action="Index" style="color:white;">Liste des trajets</a></li>
+        <li class="breadcrumb-item active" aria-current="page" style="color:white;">Réserver un ticket</li>
+      </ol>
+    </nav>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <p class="lead">
+                               <h5>Date du vol : @Model.Route.Start.ToString("dd/MM/yyyy")   </h5>
+                               <h5>Heure du vol : @Model.Route.PanifiedStart.ToString("HH:mm") à @Model.Route.PanifiedEnd.ToString("HH:mm") </h5>
+                             
+                               <h5>Nom de l'Aéroport de départ : @Model.Route.StartAirport.Name   </h5>
+                               <h5>Nom de l'Aéroport d'arrivée : @Model.Route.EndAirport.Name   </h5>
+                               <h5>Nombre de kilomètres : @Model.Route.Kilometre  </h5>
+                               <h5>Places restantes : @Model.Route.PlaceRemaining  </h5>
+                            
+                            </p>
+
+
+                            <form asp-action="CreateTicket">
+
+                                 <div class="mb-3">
+                                     <label  class="form-label">Nombre de places à réserver : </label>
+                                     <input  asp-for="numberOfReservation" type="number" class="form-control" min="1" max="@Model.Route.PlaceRemaining"   value="@Model.numberOfReservation"  >
+                                     <input  asp-for="Id" type="hidden" class="form-control"   value="@Model.Route.RouteId"  >
+                                     <h6>@Html.ValidationMessageFor(m => m.numberOfReservation, "", new { @class = "text-danger" })</h6>
+                          
+                       
+                                    </div>
+
+                                <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" type="submit" id="next">Réserver</button>
+                            </form>
+
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<div class="notification">
+        <a asp-controller="Message" asp-action="Index"> 
+
+
+    
+        <button type="button" class="icon-button">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color:white; font-size: 1.1rem;"></i></span>
+            @if (Model.Notification != 0)
+            {
+                <span class="icon-button__badge">@Model.Notification</span> 
+            }
+           
+          </button>
+        </a>
+        </div>

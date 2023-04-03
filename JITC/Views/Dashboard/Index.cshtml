@@ -1,0 +1,127 @@
+﻿@model JITC.ViewModels.DashboardViewModels
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid p-0">
+
+    <h1 class="h3 mb-3"><strong>Dashboard</strong> </h1>
+
+    <div class="row">
+        <div class="col-xl-6 col-xxl-5 d-flex">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Trajets  <i class="fa-solid fa-route"></i></h5>
+                                    </div>
+
+                                    <div>
+                                    </div>
+                                </div>
+                                <h1 class="mt-1 mb-3">@Model.NumberRoute</h1>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Hélicoptères  <i class="fa-solid fa-helicopter"></i></h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h1 class="mt-1 mb-3">@Model.NumberHelyco</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Clients  <i class="fa-solid fa-user"></i></h5>
+                                    </div>
+
+
+                                </div>
+                                <h1 class="mt-1 mb-3">@Model.NumberUser</h1>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mt-0">
+                                        <h5 class="card-title">Pilotes  <i class="fa-solid fa-user-pilot-tie"></i></h5>
+                                    </div>
+
+                                    <div class="col-auto">
+                                    </div>
+                                </div>
+                                <h1 class="mt-1 mb-3">@Model.NumberPilote</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-xxl-7">
+            <div class="card flex-fill w-100">
+                <div class="card-header">
+
+                    <h5 class="card-title mb-0">Pilotes</h5>
+                </div>
+                <div class="card-body py-3">
+                    <div class="chart chart-sm">
+                        <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                        
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table">
+                      <thead style="position: sticky;top: 0; background:#262626; color:white;">
+                        <tr>
+                            <th></th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+                        @foreach(var pilote in Model.Pilote)
+                        {
+                        <tr>
+                            <td><img src="@Url.Content(@pilote.Path)" alt="image user" class="img-radius-small"> </td>
+                          <td>@pilote.Name</td>
+                          <td>@pilote.LastName</td>
+                          <td>@pilote.Email</td>
+                          
+                        </tr>         
+
+                        }
+     
+                        
+                      </tbody>
+                    </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

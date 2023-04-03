@@ -1,0 +1,59 @@
+﻿@model IEnumerable<JITC.ViewModels.FakeUser>
+@{
+    ViewData["Title"] = "Utilisateurs";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"><strong>Utilisateurs</strong></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table">
+                      <thead style="position: sticky;top: 0; background:#262626; color:white;">
+                        <tr>
+                          <th></th>
+                          <th>Nom</th>
+                          <th>Prénom</th>
+                          <th>Email</th>
+                          <th>Rôle</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+
+
+                        @foreach(var user in Model)
+                        {
+                            <tr>
+                                <td><img src="@Url.Content(@user.Path)" alt="image user" class="img-radius-small"> </td>
+                                <td>@user.Name</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Role</td>
+                                <td>
+                                    
+                                    <a asp-action="EditUserDashboard" asp-route-id="@user.IdUser"  ><span class="badge bg-primary"> <i class="fa-solid fa-pen-to-square"></i> Editer</span></a>
+                                    <a asp-action="Delete" asp-route-id="@user.IdUser"> <span class="badge bg-danger"> <i class="fa-solid fa-trash-can"></i> Supprimer</span></a>
+                                    <a asp-action="Information" asp-route-id="@user.IdUser"><span class="badge bg-info "><i class="fa-solid fa-eye"></i> Détails</span> </a>
+                               
+                                </td>
+                            </tr>         
+                        } 
+                        </tbody>
+                        </table>
+                </div> 
+            </div>
+        </div>
+    </div>
+ </div>
+ </div>

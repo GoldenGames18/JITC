@@ -1,0 +1,124 @@
+﻿@model JITC.ViewModels.HebdoRouteViewModel
+@{
+    ViewData["Title"] = "Ajout Trajet Hebdomadaire";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Ajout </strong> d'un Trajet Hebdomadaire </h1>
+            </div>
+        </div>
+    </div>
+
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="ListOfRoute">Liste des trajets</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Route" asp-action="AddRoute">Ajout d'un trajets</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Trajet Hebdomadaire</li>
+      </ol>
+    </nav>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <form asp-action="HebdoTicket">
+                            <div class="mb-3">
+                                <label  class="form-label">Aéroport de départ: </label>
+                                <select  asp-for="StartAirport" id="start" class="form-select" aria-label="Default select example" onchange="detectChangeStart(this) ">
+                                <option selected value="0">----------------</option>
+
+                                @foreach(var aiport in Model.Aiports)
+                                {
+                                    <option  value="@aiport.AirportId">@aiport.Name</option>
+
+                                }
+                            </select>
+                             <h6>@Html.ValidationMessageFor(m => m.StartAirport, "", new { @class = "text-danger" })</h6>
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label">Aéroport d'arrivée: </label>   
+                                <select asp-for="EndAireport" id="end" class="form-select" aria-label="Default select example" onchange="detectChangeEnd(this)" target="detectChangeEnd(this)" >
+                                  <option selected value="0">----------------</option>
+
+                                    @foreach(var aiport in Model.Aiports)
+                                    {
+                                        <option  value="@aiport.AirportId">@aiport.Name</option>
+
+                                    }
+                                </select>
+                            </div>
+                             <h6>@Html.ValidationMessageFor(m => m.EndAireport, "", new { @class = "text-danger" })</h6>
+
+           
+                            <div class="mb-3">
+                                <div class="cs-form">
+                                  <label  class="form-label">Heure de départ : </label>
+                                  <input asp-for="StartFly" type="time" class="form-control" value="@Model.StartFly.ToString("HH:mm")" />
+                                </div>
+                                   <h6>@Html.ValidationMessageFor(m => m.StartFly, "", new { @class = "text-danger" })</h6>
+                            </div>
+                            <div class="mb-3">
+                                <div class="cs-form">
+                                  <label  class="form-label" >Heure de d'arrivée : </label>
+                                  <input asp-for="EndFly" type="time" class="form-control"  value="@Model.EndFly.ToString("HH:mm")" />
+                                </div>
+                                   <h6>@Html.ValidationMessageFor(m => m.EndFly, "", new { @class = "text-danger" })</h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="cs-form">
+                                  <label   class="form-label">Date de fin du trajet hebdomadaire : </label>
+                                
+                                    @if (@Model.DateFly.ToString("yyyy-MM-dd") == "0001-01-01")
+                                    {
+                                       <input asp-for="DateFly" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")"  />
+                                       
+                                    }
+                                    else
+                                    {  
+                                        <input asp-for="DateFly" type="date" class="form-control" value="@Model.DateFly.ToString("yyyy-MM-dd")" />
+                                        
+                                    }
+                                 
+                                </div>
+                                 <h6>@Html.ValidationMessageFor(m => m.DateFly, "", new { @class = "text-danger" })</h6>
+                            </div>
+                            <div class="mb-3">
+                                <div class="cs-form">
+                                  <label  class="form-label">Quelle jour de la semaine: </label>
+                                <select  asp-for="Day" id="start" class="form-select" aria-label="Default select example" onchange="detectChangeStart(this) ">
+                                    <option value="Monday">Lundi </option>
+                                    <option value="Tuesday">Mardi</option>
+                                    <option value="Wednesday">Mercredi</option>
+                                    <option value="Thursday">Jeudi</option>
+                                    <option value="Friday">Vendredi</option>
+                                    <option value="Saturday">Samedi</option>
+                                    <option value="Sunday">Dimanche</option>
+                                 </select>
+                            </div>
+                            </div>
+                             <div class="pt-1 mb-4">
+                                <button class="bg-c-lite-green btn btn-dark btn-lg btn-block" style="border:none;" type="submit" id="next">Suivant</button>
+                              </div>
+                        </form> 
+                            
+
+                            
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+     @section Scripts{
+           <environment include="Development" > 
+             <script src="~/js/hiddenOption.js" asp-append-version="true"></script>
+          
+    </environment>
+    <environment exclude="Development">
+            <script src="~/js/hiddenOption.min.js" asp-append-version="true"></script>
+    </environment>
+     }

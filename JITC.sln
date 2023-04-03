@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JITC", "JITC\JITC.csproj", "{251AE795-A627-4215-BF72-8348825AB540}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{251AE795-A627-4215-BF72-8348825AB540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251AE795-A627-4215-BF72-8348825AB540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251AE795-A627-4215-BF72-8348825AB540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251AE795-A627-4215-BF72-8348825AB540}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C72ACD9A-856C-469A-9EC2-6040A6FD759E}
+	EndGlobalSection
+EndGlobal

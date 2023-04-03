@@ -1,0 +1,64 @@
+﻿@model JITC.Models.Airport
+
+@{
+    ViewData["Title"] = "Aéroport Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h1 class="page-title h3 mb-3"> <strong>Ajout </strong> d'un Aéroport </h1>
+            </div>
+        </div>
+    </div>
+
+     <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Airport" asp-action="ListOfAirport">Liste des Aéroports</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editer un Aéroport</li>
+      </ol>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-15">
+            <div class="card">
+                <div class="card-body">
+                    <div style="overflow:initial;" class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <form asp-action="EditAirport">
+                          
+                          <div class="mb-3">
+                            <label  class="form-label">Nom de l'Aéroport : </label>
+                            
+                            <input asp-for="Name" type="text" class="form-control" id="name" value="@Model.Name"  >
+                            <input asp-for="Longitude" type="hidden"  class="form-control" id="Longitude" value="@Model.Longitude"  >
+                            <input asp-for="Latitude" type="hidden" class="form-control" id="Latitude" value="@Model.Latitude"  >
+                            <input asp-for="AirportId" type="hidden" class="form-control" id="Latitude" value="@Model.AirportId"  >
+                            <div id="emailHelp" class="form-text"></div>
+                            <h6>@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })</h6>
+                          </div>
+                          <div id="map"> </div>
+                          <button type="submit" style="border:none;" class=" btn btn-primary bg-c-lite-green">Enregistrer</button>
+                        </form> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+  @section Scripts{
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+ <environment include="Development" > 
+           
+           <script src="~/js/editMap.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+          <script src="~/js/editMap.min.js" asp-append-version="true"></script>
+  </environment>
+  }
+

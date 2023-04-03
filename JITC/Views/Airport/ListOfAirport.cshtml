@@ -1,0 +1,62 @@
+﻿@model IEnumerable<JITC.Models.Airport>
+
+@{
+    ViewData["Title"] = "Aéroport liste";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+             
+            <div class="page-title-box" style="display:flex;">
+                
+                <h1 class="page-title h3 mb-3"><strong> Aéroports</strong>  </h1> 
+                <div class="d-flex justify-content-end" style="padding-bottom: 1rem; width: 100%;">
+	                <a asp-controller="Airport" asp-action="AddAirport"><button type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Ajouter</button></a>
+                </div>
+  
+               
+                   
+                    
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table">
+                      <thead style="position: sticky;top: 0; background:#262626; color:white;">
+                        <tr>
+                        
+                          <th>Nom</th>
+                        
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+
+
+                       @foreach(var aiport in Model)
+                        {
+                            <tr>
+                                <td>@aiport.Name </td>
+                               
+                                <td>
+                                    <a asp-action="EditAirport" asp-route-id="@aiport.AirportId"  ><span class="badge bg-primary"> <i class="fa-solid fa-pen-to-square"></i> Editer</span></a>
+                                    <a asp-action="Delete" asp-route-id="@aiport.AirportId"> <span class="badge bg-danger"> <i class="fa-solid fa-trash-can"></i> Supprimer</span></a>
+                                    <a asp-action="Information" asp-route-id="@aiport.AirportId"><span class="badge bg-info "><i class="fa-solid fa-eye"></i> Détails</span> </a>
+                                </td>
+                            </tr>         
+                        }
+                        </tbody>
+                        </table>
+                </div> 
+            </div>
+        </div>
+    </div>
+ </div>
+ </div>

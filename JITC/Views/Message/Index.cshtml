@@ -1,0 +1,76 @@
+﻿@model IEnumerable<JITC.Models.Message>
+@{
+    ViewData["Title"] = "Messagerie";
+
+}
+
+   
+
+
+<div class="container" style="margin-top:5rem;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+               
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                        <div>
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6">
+                                    <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>Vos messages</h3>
+                                </div>
+                           
+                            </div>
+                  
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+
+                                <table class="table email-table no-wrap table-hover v-middle mb-0 font-14 ">
+                                    <tbody>
+
+
+                                   
+                                            @foreach(var message in Model)
+                                            {
+                                                <tr>
+                                                    <td class="pl-3"></td>
+                                                    <td><span class="badge bg-warning text-dark">Attention</span></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a class="decoration"  asp-action="ReadMessage" asp-route-id="@message.IdMessage">
+                                                            @if (message.IsRead)
+                                                            {
+                                                                <span class="text-dark">@message.Title</span>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                 <span class="text-dark"><strong>@message.Title</strong></span>
+                                                            }
+
+                                                        </a>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-muted">@message.Date.ToString("dd-MM-yyyy")</td>
+                                                 </tr> 
+
+                                            } 
+                                    
+                                       
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+
+
+    
